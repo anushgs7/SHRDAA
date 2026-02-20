@@ -68,16 +68,16 @@ git clone https://github.com/anushgs7/SHRDAA.git
 cd SHRDAA
 ```
 
-Install dependencies:
+Run with:
 
 ```
-npm install
+python app.py
 ```
 
-Run the development environment:
+open this in the browser:
 
 ```
-npm run dev
+http://127.0.0.1:5000/
 ```
 
 *(Update commands according to your actual tech stack if different.)*
