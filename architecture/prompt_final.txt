@@ -1,0 +1,497 @@
+[SYSTEM INSTRUCTION] 
+
+You are acting as a senior software engineer helping build a small,
+production-ready academic demonstration project.
+
+You MUST follow these rules strictly:
+
+- Do exactly what is requested. Do NOT add extra features.
+- Do NOT change the given architecture or file structure unless explicitly told.
+- Ask for clarification BEFORE coding if anything is ambiguous.
+- Prefer clarity and correctness over cleverness.
+- Keep all outputs simple, readable, and demo-ready.
+- Output complete, ready-to-run files when asked.
+- Do NOT introduce new technologies unless explicitly approved.
+- Treat this as a final deliverable, not a draft.
+- No assumptions.
+- No placeholders.
+- No pseudo-code.
+- No unnecessary explanations.
+- If something is missing or unclear, STOP and ask first.
+
+
+[PROJECT CONTEXT]
+
+Project Name:
+SHRDAA — Secure High-Integrity Registry for Data Audit & Authentication
+
+Project Type:
+Concept demonstration (academic)
+
+Project Objective:
+To demonstrate how blockchain can act as an immutable audit and verification
+layer on top of a traditional centralized financial system.
+
+The system simulates a government fund-flow environment where:
+- Transactions are processed by a centralized backend
+- Cryptographic hashes of each transaction are permanently recorded
+- Any tampering can be detected by re-verification
+- Existing systems are not replaced, only augmented
+
+
+[FIXED FILE STRUCTURE — MUST NOT CHANGE]
+
+Project/
+│
+├─ coresystem.py
+├─ database.py
+├─ authorisation.py
+├─ config.py
+├─ main.py
+│
+├─ templates/
+│   └─ index.html
+│
+└─ database/
+    ├─ accounts.csv
+    ├─ ledger.csv
+    ├─ blockchain.csv
+    └─ project_dis.csv
+
+
+[MODULE RESPONSIBILITIES]
+
+--------------------------------------------------
+coresystem.py
+--------------------------------------------------
+This module contains all core business logic.
+
+Responsibilities include:
+- Creating users
+- Generating unique:
+  - account_no
+  - transaction_no
+  - project_no
+- Enforcing user-type rules (from config.py)
+- Hashing transaction data
+- Bundling transaction records
+- Passing validated transaction data to database.py
+- Fetching required data from database.py for UI requests
+- Verifying transactions by:
+  - Reconstructing transaction data
+  - Rehashing it
+  - Comparing against blockchain.csv
+- Enforcing all transaction constraints
+- Providing all data and features required by index.html and other modules
+
+
+--------------------------------------------------
+database.py
+--------------------------------------------------
+CSV persistence layer.
+
+Responsibilities:
+- Read/write/update CSV files inside database/
+- Handle:
+  - accounts.csv
+  - ledger.csv
+  - blockchain.csv
+  - project_dis.csv
+- Provide safe access methods to:
+  - coresystem.py
+  - authorisation.py
+- Contains NO business logic
+- Any other necessary features that other modules may require 
+
+
+--------------------------------------------------
+authorisation.py
+--------------------------------------------------
+Handles login and transaction authorization.
+
+Login authorization:
+- On Login page:
+  - account_no and password (hashed) are collected
+  - Compared against accounts.csv
+- If valid:
+  - Login approved
+  - A local temporary variable is set:
+    yes(account_no) / no
+
+Transaction authorization:
+- During transaction:
+  - Password is re-entered
+  - Password hash is compared with stored hash of respective account_no 
+    stored in local temporary veriable.
+- If approved:
+  - Transaction allowed
+  - Popup: "Transaction completed"
+- If denied:
+  - Transaction blocked
+  - Popup: "Transaction failed"
+
+
+--------------------------------------------------
+config.py
+--------------------------------------------------
+Holds system-wide configuration.
+
+Includes:
+- File paths
+- User types:
+  - Govt_officer
+  - Beneficiary
+  - Auditor
+- Default balances:
+  - Govt_officer: 100000000
+  - Beneficiary: 1000000
+
+
+--------------------------------------------------
+main.py
+--------------------------------------------------
+Main entry point.
+
+Responsibilities:
+- Uses Flask
+- Hosts index.html
+- Routes UI actions to backend modules
+- Single-user demo assumption
+- No concurrent access handling
+
+
+--------------------------------------------------
+templates/index.html
+--------------------------------------------------
+Single-file frontend (HTML + CSS + JS).
+
+All frontend logic must remain inside this file.
+
+
+[UI STYLE REQUIREMENTS]
+
+- Modern, sleek UI
+- Inspired by Indian government official websites
+- Smooth animations and transitions
+- Fixed top navigation bar:
+  - Left: Project name (click → Home)
+  - Right: Navigation links
+- Navigation bar remains visible on all pages
+- All popups:
+  - Must have a close button
+  - Auto-dismiss after 5 seconds
+
+
+[UI PAGES & FEATURES — FULL SPECIFICATION]
+
+--------------------------------------------------
+[Page] Home
+--------------------------------------------------
+- Overview of SHRDAA
+- Explains purpose and trust model
+- High-level description of blockchain audit layer
+
+
+--------------------------------------------------
+[Page] Public Ledger
+--------------------------------------------------
+- Displays ALL transactions from ledger.csv
+- Transactions grouped by project_no
+
+[Feature] Projects Grid:
+- Displays all projects as tiles/panels
+- Each tile shows:
+  - Project name / number
+  - Brief description (from project_dis.csv)
+
+[Page] Project (Public View):
+- Opens when project tile is clicked
+- Displays ALL transactions for that project
+- Read-only view
+
+
+--------------------------------------------------
+[Page] Login
+--------------------------------------------------
+- Input:
+  - account_no
+  - password
+- On success:
+  - Redirect to respective Dashboard
+  - Popup: "Login successful"
+- On failure:
+  - Popup: "indicating invalid credentials"
+
+
+--------------------------------------------------
+ Dashboards_overview (Common)
+--------------------------------------------------
+- Role-based rendering
+- Displays personal info and allowed actions
+- Enter user respective Dashboard after login
+
+--------------------------------------------------
+[Page] Govt_officer Dashboard
+--------------------------------------------------
+
+- Directed form the login page after successful
+  login by a Govt_officer
+Left Panel (narrow):
+- Personal information:
+  - name
+  - age
+  - rank (if a Govt_officer (District Collector , Secretary , Joint Secretary), if a auditor(Auditor)} / {company (if a Beneficiary)}, 
+  - location
+  - number of projects involved in
+  - account_no
+  - balance
+
+Center Panel (wide):
+- Grid of involved projects
+- “Involved” means:
+  - all the authorised_projects_no (form accounts.csv)
+
+[Page] Project (Govt_officer View):
+- Opended when clicked on that project name on the Center Panel
+- Displays all transactions for that project
+- Transactions shown in wide tile/panel
+
+Buttons available:
+- Make Payment
+- New Project
+
+
+[Page] Make Payment
+--------------------------------
+Form fields:
+- to_account_no
+  - If account belongs to:
+    - Govt_officer OR Auditor
+    → Popup: "Invalid account" 
+- project_no
+- amount
+  - If balance becomes negative:
+    → Popup: "Invalid transaction"
+- password
+  - If incorrect:
+    → Popup: "Wrong password"
+
+On success:
+- Transaction recorded
+- Blockchain hash appended
+
+
+[Page] New Project
+--------------------------------
+Form layout:
+- Large tile/panel
+- Input block for multiple account_no
+- When account_no entered:
+  - Display corresponding name in a small tile
+  - Add generated project_no not authorised_projects_no of all added account_no
+
+Additional field:
+- project_description
+  - Stored in project_dis.csv
+- project_no generated by coresystem.py
+
+
+Right Panel (narrow):
+- Create new user (demo-only feature)
+- Form fields:
+  - name
+  - age
+  - rank (Govt_officer / Auditor)
+    OR
+  - company (Beneficiary)
+  - location
+  - password
+  - balance
+
+
+--------------------------------------------------
+[Page] Beneficiary Dashboard
+--------------------------------------------------
+
+Left Panel (narrow):
+- name
+- age
+- company
+- location
+- account_no
+- balance
+
+Main Panel (wide):
+- Grid of involved projects
+- “Involved” means:
+  - all the authorised_projects_no (form accounts.csv)
+- Read-only access
+
+
+[Page] Project (Beneficiary View):
+- Opended when clicked on that project name on the Main Panel
+- Displays all transactions for that project
+- Transactions shown in wide tile/panel
+
+--------------------------------------------------
+[Page] Auditor Dashboard
+--------------------------------------------------
+
+Left Panel (narrow):
+- name
+- age
+- role(Default == Auditor)
+- location
+- account_no
+
+Main Panel:
+- Grid of ALL projects
+- Same layout as Public Ledger and other Dashboards
+
+[Page] Project (Auditor View):
+- Displays all transactions
+- Similar to how it is on other pages
+- Each transaction has:
+  - Verify button
+
+Verification rules:
+- Can only verify if verification_status == pending
+- Verification allowed once
+- On verification:
+  - Rehash transaction
+  - Compare with blockchain
+  - Popup result:
+    - "Verified"
+    - "Chain mismatch"
+
+
+--------------------------------------------------
+[Page] About
+--------------------------------------------------
+- Ultra-detailed explanation of:
+  - Current systems
+  - Problems with trust and tampering
+  - How SHRDAA improves transparency
+  - Why blockchain is used as a layer, not a replacement
+
+
+[DATABASE CSV SCHEMAS]
+
+--------------------------------------------------
+accounts.csv
+--------------------------------------------------
+Columns:
+- name
+- account_no
+- password_hash(SHA-256)
+- balance
+- age
+- location
+- rank (if a Govt_officer (District Collector , Secretary , Joint Secretary), if a auditor(Auditor)} / {company (if a Beneficiary)}, 
+- authorised_projects_no (list of all project_no said person was added to while creating a project)
+
+
+--------------------------------------------------
+ledger.csv
+--------------------------------------------------
+Columns:
+- transaction_no
+- project_no
+- from_account_no
+- to_account_no
+- amount
+- timestamp
+- verification_status
+
+Rules:
+- verification_status ∈ {pending, done}
+- One-time verification only
+- Govt_officer → Govt_officer/Auditor NOT allowed
+- Negative balance NOT allowed
+
+
+--------------------------------------------------
+blockchain.csv
+--------------------------------------------------
+Columns:
+- transaction_no
+- project_no
+- previous_hash
+- current_hash
+
+Rules:
+- Append-only
+- Global chain
+- Order matches ledger.csv
+
+
+--------------------------------------------------
+project_dis.csv
+--------------------------------------------------
+Columns:
+- project_no
+- project_description
+
+
+[EXECUTION PLAN]
+
+The project MUST be built strictly in this order:
+
+Phase 1 : Architecture finalisation (no major High-level changes after)
+Phase 2 : Coding (module-wise)
+Phase 3 : Testing
+Phase 4 : Demo walkthrough discussion
+
+
+[FINAL PROMPT]
+
+Based on the context above:
+Confirm whether everything required to begin building this project
+is fully specified and ready.
+
+If anything is missing or ambiguous:
+STOP and ask before proceeding.
+
+[CONTROL RULES]
+
+- If Phase 1 (architecture finalisation) is not explicitly approved → do NOT generate code.
+- If any UI behavior is unclear → ask before implementing.
+- If CSV schema changes are implied → stop and confirm.
+- If a request conflicts with transaction rules → refuse.
+- If generating large code → generate file-by-file only.
+
+How subsequent prompts are going to be given: 
+Phase 1 initiate
+  - Any High-level architecture modifications are to be made now.
+  - All High-level architecture is to be finilised.
+  - All COI (conflict of intrests) must be resolved.
+  - Should be in a ready to generate code stage.
+Phase 1 architecture finilise 
+  - After this prompt no major changes are to be disscussed or made.
+  - If any such instences arise then "RED ALLERT Back to drawing board stage".
+  - Everything is has be finilised and nothing to change now .
+Phase 2 initiate
+  - You give me what is the most optimal order to generate each module.
+  - I look at the plan and do modifications if there are any to be done.
+  - we finilise the code-generation plan.
+Phase 2 {module_name} generate
+  - You give a very small Overview of what the module is going to do .
+  - Then give a ready-to-run file for the specified module.
+Phase 2 {module_name} modifications {changes to be made}
+  - This is given only when I come accorss any Problems.
+  - This phase is to be avoided at any cost.
+Phase 2 terminate
+  - Now all files are generated and going to the next stage.
+Phase 3 initiate
+  - The project as a whole is to be tested.
+  - Every feature/page in the UI is to be tested.
+Phase 3 {quary}
+  - Any Bugs or set backs "RED ALLERT mode".
+  - Should fallback to Phase 2 {module_name} modifications {changes to be made}(this stage is indipendent for each module).
+Phase 4 Walk me thorough
+  - You are going to act as a presenter for this project.
+  - Share the best way this project can be demonstrated.
+  - There is a presentation to be prepared next.
+Phase 4 terminate 
+  - End of project, lets celebrate. Wish me luck for tomorrow.
+

@@ -1,0 +1,244 @@
+{% extends "layout.html" %}
+{% block content %}
+
+
+<div class="p-5 mb-4 bg-dark text-white rounded-3 shadow">
+    <div class="container-fluid py-5 text-center">
+        <h1 class="display-4 fw-bold">SHRDAA</h1>
+        <p class="lead">Secure High-Integrity Registry for Data Audit and Authentication</p>
+        <hr class="my-4 border-secondary">
+        <p class="fs-5">Redefining Trust in Government Fund Management through Cryptographic Transparency.</p>
+        <div class="mt-4">
+            <a href="/public" class="btn btn-primary btn-lg px-4 me-md-2">Explore Public Ledger</a>
+            <a href="/login" class="btn btn-outline-light btn-lg px-4">Officer Portal</a>
+        </div>
+    </div>
+</div>
+
+
+<!-- INTRODUCTION -->
+<div class="container py-5">
+    <div class="row align-items-center g-5">
+        
+        <!-- Left: Strong narrative -->
+        <div class="col-lg-7">
+            <span class="badge bg-secondary px-4 py-2 mb-3 fs-6">Project Overview</span>
+            <h2 class="fw-bold mb-4">
+                Redefining Trust in Government Fund Management
+            </h2>
+            <p class="lead text-muted">
+                Government-funded projects operate at massive scale, involving multiple departments,
+                contractors, and long execution timelines. Despite digital systems being widely adopted,
+                transparency and verifiability remain limited.
+            </p>
+            <p class="text-muted">
+                SHRDAA introduces a cryptographically verifiable registry that records fund movements
+                in an append-only structure, ensuring that once data is recorded, any unauthorized
+                modification becomes immediately detectable.
+            </p>
+        </div>
+
+        <!-- Right: Key highlights -->
+        <div class="col-lg-5">
+            <div class="card shadow-sm p-4 h-100">
+                <h5 class="fw-bold mb-3">What SHRDAA Delivers</h5>
+                <ul class="list-unstyled mb-0">
+                    <li class="mb-2">✔ Tamper-evident fund records</li>
+                    <li class="mb-2">✔ Transaction-level audit visibility</li>
+                    <li class="mb-2">✔ Public verification without data control</li>
+                    <li class="mb-2">✔ Simple, explainable blockchain logic</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- PROBLEMS -->
+<div class="row g-4 py-5">
+    <div class="col-md-4">
+        <div class="card h-100 p-4 text-center">
+            <span class="badge bg-primary mb-3">Problem 1</span>
+            <h4 class="fw-bold">Lack of Data Integrity</h4>
+            <p class="text-muted">
+                Existing systems allow financial records to be modified or overwritten without
+                leaving strong cryptographic evidence, making historical data authenticity difficult to guarantee.
+            </p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 p-4 text-center">
+            <span class="badge bg-primary mb-3">Problem 2</span>
+            <h4 class="fw-bold">Delayed & Reactive Auditing</h4>
+            <p class="text-muted">
+                Audits often occur after funds are disbursed or misused.
+                This reactive approach limits prevention and weakens accountability mechanisms.
+            </p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 p-4 text-center">
+            <span class="badge bg-primary mb-3">Problem 3</span>
+            <h4 class="fw-bold">Limited Public Transparency</h4>
+            <p class="text-muted">
+                Citizens only see high-level summaries.
+                There is no independent way to verify how funds move across departments or projects.
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- OBJECTIVES -->
+<div class="container py-5">
+    <div class="card bg-light border-0 p-5">
+        <h3 class="fw-bold text-center mb-4">Core Objectives</h3>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item bg-transparent">Ensure tamper-evident government fund records</li>
+            <li class="list-group-item bg-transparent">Maintain a verifiable, chronological transaction history</li>
+            <li class="list-group-item bg-transparent">Improve auditability without operational disruption</li>
+            <li class="list-group-item bg-transparent">Enable public verification without compromising control</li>
+            <li class="list-group-item bg-transparent">Demonstrate a simple, explainable governance prototype</li>
+        </ul>
+    </div>
+</div>
+
+<!-- SYSTEM ARCHITECTURE -->
+<div class="row align-items-center py-5">
+    <div class="col-lg-6">
+        <h2 class="fw-bold">How SHRDAA Works</h2>
+        <p class="lead text-muted">
+            A modular architecture designed for clarity, auditability, and integrity.
+        </p>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item bg-transparent">
+                <strong>Authentication Layer:</strong> Role-based access for officers, auditors, and public viewers.
+            </li>
+            <li class="list-group-item bg-transparent">
+                <strong>Transaction Engine:</strong> Validates and records fund disbursements.
+            </li>
+            <li class="list-group-item bg-transparent">
+                <strong>Cryptographic Hashing:</strong> Each entry links to the previous record using SHA-256.
+            </li>
+            <li class="list-group-item bg-transparent">
+                <strong>Immutable Storage:</strong> Structured CSV files act as a transparent ledger.
+            </li>
+            <li class="list-group-item bg-transparent">
+                <strong>Public Interface:</strong> Allows independent verification without modification rights.
+            </li>
+        </ul>
+    </div>
+    <div class="col-lg-6 text-center">
+        <div class="p-4 bg-white border rounded shadow-sm">
+            <code class="text-start d-block">
+                database/<br>
+                ├── accounts.csv<br>
+                ├── blockchain.csv<br>
+                ├── ledger.csv<br>
+                └── project_dis.csv
+            </code>
+            <div class="mt-3 small text-muted">Append-only, tamper-evident data layer</div>
+        </div>
+    </div>
+</div>
+
+<!-- USE CASES -->
+<div class="container py-5">
+    <h3 class="fw-bold text-center mb-4">Practical Use Cases</h3>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card h-100 p-4">
+                <h5 class="fw-bold">Infrastructure Projects</h5>
+                <p class="text-muted">
+                    Track allocations and releases across departments, contractors, and milestones.
+                </p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 p-4">
+                <h5 class="fw-bold">Welfare Schemes</h5>
+                <p class="text-muted">
+                    Verify fund flow integrity without exposing beneficiary-sensitive information.
+                </p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 p-4">
+                <h5 class="fw-bold">Audit & Oversight</h5>
+                <p class="text-muted">
+                    Enable continuous, transaction-level auditing instead of post-facto reviews.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CONCLUSION -->
+<div class="container py-5">
+    <div class="card bg-light border-0 p-5 text-center">
+        <h3 class="fw-bold">Building Trust Through Verifiability</h3>
+        <p class="mx-auto" style="max-width: 850px;">
+            SHRDAA demonstrates how cryptographic principles can be applied in a practical,
+            understandable manner to strengthen public trust in governance.
+            While designed as a prototype, the system lays the foundation for future
+            enhancements such as real-time verification and deeper decentralization.
+        </p>
+    </div>
+</div>
+
+<!-- DISCLAIMER -->
+<div class="container py-4">
+    <div class="card border-0 bg-light p-4 text-center">
+        <small class="text-muted">
+            <strong>Disclaimer:</strong>  
+            SHRDAA is a prototype system developed for academic and demonstrative purposes only.
+            It is intended to illustrate the application of blockchain-inspired cryptographic
+            techniques for data integrity, auditability, and transparency.
+            This project does not represent a deployed government platform, nor does it claim
+            legal, financial, or regulatory authority over real-world fund management systems.
+        </small>
+    </div>
+</div>
+
+<!-- FOOTER / CREDITS -->
+<div class="w-100 mt-5 border-top" style="background-color: #e9ecef;">
+    <div class="container-fluid px-5 py-4">
+        <div class="row gy-4 py-5">
+
+            <!-- Project Info -->
+            <div class="col-lg-5 col-md-12">
+                <h6 class="fw-semibold text-uppercase text-muted mb-3">SHRDAA</h6>
+                <p class="text-muted mb-0" style="max-width: 520px;">
+                    Secure High-Integrity Registry for Data Audit and Authentication is a
+                    prototype system developed to demonstrate cryptographic transparency
+                    in government fund tracking.
+                </p>
+            </div>
+
+            <!-- Project Team (Left-aligned) -->
+            <div class="col-lg-4 col-md-12 ms-auto">
+                <h6 class="fw-semibold text-uppercase text-muted mb-3">Project Team</h6>
+                <ul class="list-unstyled text-muted mb-0">
+                    <li class="mb-1">Anush G. S.</li>
+                    <li class="mb-1">Adwaith Rao T. D.</li>
+                    <li class="mb-1">Anand Ankali</li>
+                    <li class="mb-1">Chanda C.</li>
+                    <li class="mb-1">Chethan Kumar</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <hr class="border-secondary opacity-25 my-4">
+
+        <div class="d-flex flex-column flex-md-row justify-content-between text-muted small px-2 mb-2">
+            <div>
+                © SHRDAA Project — For educational and demonstrative purposes only.
+            </div>
+            <div>
+                Secure High-Integrity Registry for Data Audit and Authentication
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

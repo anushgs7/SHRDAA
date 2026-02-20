@@ -1,0 +1,106 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="row mb-4">
+    <div class="col-md-12">
+        <h2 class="fw-bold">{{ role.replace('_', ' ') }} Dashboard</h2>
+        <hr>
+    </div>
+</div>
+
+<ul class="nav nav-tabs mb-4" id="dashboardTabs" role="tablist">
+    <li class="nav-item">
+        <button class="nav-link active" id="projects-tab" data-bs-toggle="tab" data-bs-target="#projects" type="button">My Assigned Projects</button>
+    </li>
+    {% if role == 'Govt_officer' %}
+    <li class="nav-item">
+        <button class="nav-link" id="actions-tab" data-bs-toggle="tab" data-bs-target="#actions" type="button">Govt Actions</button>
+    </li>
+    {% elif role == 'Auditor' %}
+    <li class="nav-item">
+        <button class="nav-link" id="audit-tab" data-bs-toggle="tab" data-bs-target="#audit" type="button">Auditor Actions</button>
+    </li>
+    {% endif %}
+</ul>
+
+<div class="tab-content" id="dashboardTabContent">
+    
+    <div class="tab-pane fade show active" id="projects">
+        <div class="card p-4">
+            {% if my_projects %}
+                <div class="list-group list-group-flush">
+                    {% for p in my_projects %}
+                    <div class="list-group-item py-3 px-0">
+                        <div class="d-flex w-100 justify-content-between align-items-center">
+                            <h5 class="mb-1 fw-bold">{{ p.project_no }}</h5>
+                            <button class="btn btn-sm btn-outline-primary" onclick="loadTransactions('{{ p.project_no }}')">View Transactions</button>
+                        </div>
+                        <p class="mb-1 text-muted">{{ p.project_description }}</p>
+                        <div id="tx-container-{{ p.project_no }}" class="mt-3"></div>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="text-muted">No projects assigned to your account.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if role == 'Govt_officer' %}
+    <div class="tab-pane fade" id="actions">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card p-3 mb-3">
+                    <h5 class="fw-bold">Create User</h5>
+                    <form action="/action/create_user" method="POST">
+                        <input type="text" name="name" class="form-control mb-2" placeholder="Name" required>
+                        <input type="text" name="age" class="form-control mb-2" placeholder="Age">
+                        <input type="text" name="location" class="form-control mb-2" placeholder="Location">
+                        <input type="text" name="rank" class="form-control mb-2" placeholder="Rank (e.g. Officer)" required>
+                        <input type="password" name="password" class="form-control mb-2" placeholder="Password" required>
+                        <input type="number" name="balance" class="form-control mb-2" placeholder="Initial Balance">
+                        <button class="btn btn-success w-100">Create User</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-3 mb-3">
+                    <h5 class="fw-bold">Create Project</h5>
+                    <form action="/action/create_project" method="POST">
+                        <input type="text" name="account_nos" class="form-control mb-2" placeholder="Auth Accounts (comma sep)" required>
+                        <textarea name="description" class="form-control mb-2" placeholder="Project Description" required></textarea>
+                        <button class="btn btn-success w-100">Create Project</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-3 mb-3">
+                    <h5 class="fw-bold">Make Transaction</h5>
+                    <form action="/action/transaction" method="POST">
+                        <input type="text" name="to_account" class="form-control mb-2" placeholder="To Account No" required>
+                        <input type="text" name="project_no" class="form-control mb-2" placeholder="Project No" required>
+                        <input type="number" step="0.01" name="amount" class="form-control mb-2" placeholder="Amount" required>
+                        <input type="password" name="password" class="form-control mb-2" placeholder="Confirm Password" required>
+                        <button class="btn btn-warning w-100">Send Funds</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if role == 'Auditor' %}
+    <div class="tab-pane fade" id="audit">
+        <div class="card p-4 mx-auto" style="max-width: 500px;">
+            <h5 class="fw-bold">Verify Transaction Integrity</h5>
+            <p class="small text-muted">Verify the blockchain hash for a specific transaction record.</p>
+            <form action="/action/verify" method="POST">
+                <input type="text" name="transaction_no" class="form-control mb-3" placeholder="Transaction No (e.g. T000001)" required>
+                <button class="btn btn-info w-100 text-white fw-bold">Verify Integrity</button>
+            </form>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}

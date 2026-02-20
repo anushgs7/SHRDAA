@@ -1,0 +1,14 @@
+<div class="list-group">
+    {% for p in projects %}
+    <div class="list-group-item">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{ p.project_no }}</h5>
+        </div>
+        <p class="mb-1">{{ p.project_description }}</p>
+        <button class="btn btn-sm btn-outline-secondary mt-2" onclick="loadTransactions('{{ p.project_no }}')">View Transactions</button>
+        <div id="tx-container-{{ p.project_no }}" class="mt-3"></div>
+    </div>
+    {% else %}
+    <p>No projects found.</p>
+    {% endfor %}
+</div>

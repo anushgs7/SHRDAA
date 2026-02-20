@@ -1,0 +1,34 @@
+{% if transactions %}
+<div class="table-responsive">
+    <table class="table table-sm table-bordered mt-2">
+        <thead class="table-light">
+            <tr>
+                <th>Txn No</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Amount</th>
+                <th>Verification Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for t in transactions %}
+            <tr>
+                <td>{{ t.transaction_no }}</td>
+                <td>{{ t.from_account_no }}</td>
+                <td>{{ t.to_account_no }}</td>
+                <td>{{ t.amount }}</td>
+                <td>
+                    {% if t.verification_status == 'done' %}
+                        <span class="badge bg-success">Verified</span>
+                    {% else %}
+                        <span class="badge bg-warning text-dark">Pending</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<p class="text-muted small">No transactions found for this project.</p>
+{% endif %}

@@ -1,0 +1,105 @@
+[Prompt]
+
+Based on the .py files and the give input data design {cli.py}
+
+[Input Data]
+
+-I want a CLI UI for this project
+
+-The UI is going to load like webpages(each time a new page is entered the screen is cleared then the contents is printed)
+
+-Make this look as much like a webpage as possible
+
+-I want to have the following pages 
+  Home
+  Login
+  Public Ledger
+    View Transactions(P)
+  Govt_officer_dashboard
+    Add New user
+    View Projects(G)
+      View Transactions(G)
+    Add New Project
+    Make transaction
+    Logout -> Home
+
+  Auditor_dashboard
+    View Projects(A)
+      View Transactions(A)
+    Verifiy Transactions
+    Logout -> Home
+
+  Benificiary_dashboard
+    View Projects(B)
+      View Transactions(B)
+    Logout -> Home
+
+Home Page should have 
+Option to Login and view Public Ledger
+
+Login should have
+a form to enter 
+account_no
+password
+
+Public should have
+show a list of all projects and their discription
+the list should be numbered so that the user can enter the corrospontind number to view the transactions in the project
+entring a number should show the transcations in the project (takes to View Transactions(P))
+  View Transactions(P)
+    Should show a detailed spread sheet of the transactions in the project
+
+Govt_officer_dashboard should have
+  Add New user
+    should have opiton to enter the 
+      name
+      age
+      location
+      rank/ocmpany
+      password
+      balance
+    after success creation of user it should display the account_no
+  View Projects(G)
+    show a list of all projects the user is involved in and the project's discription
+    the list should be numbered so that the user can enter the corrospontind number to view the transactions in the project
+    entring a number should show the transcations in the project (takes to View Transactions(G))
+      View Transactions(G)
+        Should show a detailed spread sheet of the transactions in the project
+  Make Transactions
+    should have a form to fill the following information to make a transaction
+      to_account_no
+      amount
+      project_no
+      password
+  Logout
+    should return to home page
+
+Auditor_dashboard should have
+
+  View Projects(A)
+    show a list of all projects and their discription
+    the list should be numbered so that the user can enter the corrospontind number to view the transactions in the project
+    entring a number should show the transcations in the project (takes to View Transactions(A))
+      View Transactions(A)
+        Should show a detailed spread sheet of the transactions in the project
+  Verifiy Transactions
+    should ask to enter transaction number
+    give respective output
+      verified
+      already verified
+      verification failed
+  Logout
+    should return to home page
+
+Benificiary_dashboard
+
+
+  View Projects(B)
+    show a list of all projects and their discription
+    the list should be numbered so that the user can enter the corrospontind number to view the transactions in the project
+    entring a number should show the transcations in the project (takes to View Transactions(B))
+      View Transactions(B)
+        Should show a detailed spread sheet of the transactions in the project
+  Logout
+    should return to home page
+

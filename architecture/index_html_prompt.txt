@@ -1,0 +1,245 @@
+[Style]
+-Make this website have nice animations
+-Make it look like a very ultra asthetic modern webiste
+-Make sure you avoid the lame government website like look
+-Use fonts and website styles that are widely used in modern sleek websites
+
+
+[Pop ups]
+Purpose:
+-To show temprory notifications to the user
+-It should appear on the screen as mentioned
+-It should have a semi transparent bakcground
+-It should stay up for 10 seconds
+-It should have a close button on the top Right
+
+
+[Universal to all Pages]
+Note:
+-Should be there on all pages
+-Use fonts that are widely used on other websites to have a asthetic feel
+
+Purpose:
+- Mainly for navigaion through different pages
+
+Visible Sections:
+- A panel on the top that contains the following
+SHRDAA(Left alligned)
+Home, Public Ledgers, Login(Right alligned)
+
+User Actions:
+-Upon Clicking SHRDAA it should take the user to the [Home Page]
+-Upon Clicking Home it should take the user to the [Home Page]
+-Upon Clicking Login it should take the user to the [Login Page]
+-Upon Clicking Public Ledgers it should take the user to the [Public Ledger]
+
+
+[Home Page]
+
+Purpose:
+- Act as a home page for this website
+
+Visible Sections:
+- Should have a tile containg the following information
+
+{Welcome to SHRDAA
+
+Transparency. Accountability. Trust — built on Blockchain.
+
+SHRDAA is a next-generation digital platform designed to track, audit, and authenticate government fund usage with absolute integrity. Every transaction is recorded, verified, and made tamper-proof using blockchain technology — because public money deserves public trust.
+
+Why SHRDAA?
+
+Government fund leakage, delayed audits, and data manipulation are real problems. 
+SHRDAA fixes that by making every rupee traceable, verifiable, and accountable — in real time.
+No excuses. No blind spots.
+
+What SHRDAA Delivers?
+
+Immutable Audit Trails – Once recorded, data cannot be altered.
+Real-Time Fund Tracking – Monitor fund flow from allocation to utilization.
+Role-Based Dashboards – Officials, auditors, and public users see exactly what they’re supposed to.
+Secure Authentication – Every action is digitally signed and verified.
+Public Transparency – Selected data can be made publicly viewable to ensure trust.
+
+Who Is It For?
+
+Government Authorities – Track allocations and approvals.
+Auditors – Verify spending without data tampering.
+Implementing Agencies – Submit authenticated expenditure records.
+Citizens – View transparent fund utilization (read-only access).
+Built for the Future
+SHRDAA is scalable, secure, and designed to integrate with existing government systems. It’s not just a project — it’s infrastructure for trust.
+}
+-Make sure each question answered has its own tile. Highlight the question. Make it look as much like a home page as possible
+
+User Actions:
+- None (View only page)
+
+Data Shown:
+- None (Only the above questions answered)
+
+Navigation:
+- None (Only through the top navigation panel )
+
+Pop ups:
+None (Not required)
+
+
+[Login Page]
+
+Purpose:
+-To provide Login to users
+
+Visible Sections:
+-Should have a centre alligned panel that takes in account_no and password
+
+User Actions:
+-Should have sections in the panel to type in account_no and password
+
+Data Shown:
+None (Only a login Page)
+
+Navigation:
+None (Only Through the top panel)
+
+Pop ups:
+-Up on failed Authentication {Login failed} (Let this pop up be on the bottom right all other properties still apply)
+-Up on successful Authentication {Loign successful} (Let this pop up be on the bottom right all other properties still apply)
+
+[Govt Officer Dashboard]
+
+Purpose:
+-To provide a Dashboard to the Govt Officer
+
+Visible Sections:
+-Should have 3 panels on equal size side by side
+-The left panel must have the following personal data
+  Name
+  account_no
+  balance
+  age 
+  location
+  rank 
+  authorised_project_no {as a small panel containing all the authorised_project_no}
+-The center Pannel must have the following sections and button to add information (adding new user section)
+  Heading {Add user}
+  Name
+  age
+  location
+  rank or company
+  password
+  balance
+  [Add user] - button takes in all the informaiton and submits to the backend
+
+-The right panel must have buttons that do the following Actions
+  [My Projects] -> takes to the [Projects Page - Govt Officer]
+  [New Project] -> takes to the [New Project Page]
+
+User Actions:
+-clicking on [My Projects], [New Project], [Add user] should lead to the respective actions mentioned above
+
+Data Shown:
+-Only the personal data on the left panel
+
+Navigation:
+-Buttons mentioned above with their respective actions
+
+Pop ups:
+-If while adding a user any field is missing {[field name/s] is missing} at the bottom right of the screen
+
+
+[Projects Page – Govt Officer]
+
+Purpose:
+-A page that shows the projects that the Govt Officer is involved in 
+
+Visible Sections:
+-Should have panels for each project they are in (info to be taken form accounts.csv under authorised_project_no)
+-All the panels should be side by side in the form of a gird
+-All panels should be of same size no matter what
+
+User Actions:
+-Up on Clicking a panel here it should take to user to [Project Transaction Page - Govt Officer]
+
+Data Shown:
+-On each pannel should be the project number as the Heading and have project discripton
+-If porject discripton is very big show only the part that fits and add "..." to the end 
+
+Navigation:
+-Clicking each penel takes user to respective [Project Transaction Page - Govt Officer]
+
+Pop ups:
+- None (Not required)
+
+
+[Project Transaction Page - Govt Officer]
+
+Purpose:
+-To show all the transactions in a project 
+
+Visible Sections:
+-Should have one big panel that contains a list of all transaction.
+-Should have the following coloumns
+  transaction_no 
+  from_account_no 
+  to_account_no 
+  amount 
+  timestamp 
+  verification_status
+-Should have a button on the top right of this panel [+] that takes the user to [Make Payment Page]
+-Should show the project_no on the same X axis as the [+] button on the panel 
+-This panel should be scrollable since the number of transaction in a project can be many 
+
+User Actions:
+-The [+] button that does that above mentioned action 
+
+Data Shown:
+-All the transcations involvoed in the project
+
+Navigation:
+-The [+] button takes the user to the above mentioned page 
+
+Pop ups:
+-None (Not required)
+
+
+[Make Payment Page]
+
+Purpose:
+-To allow Govt - Officer to make payments
+
+Visible Sections:
+-A panel (center alligned) that contains the following fields and button for input
+ to_account_no
+ amount
+ password (of the user that is logged in)
+ [Pay] - button that gathers these informaiton and give it to backend to process transaction
+
+User Actions:
+-[Pay] button does the above mentioned action
+
+Data Shown:
+-None (not required)
+
+Navigation:
+-None 
+
+Pop ups:
+-If the user entered password that is wrong password {incorrect password} bottom right 
+
+
+[New Project Page]
+(let this have nothing actually)
+
+
+[Auditor Dashboard]
+(an image is give)
+(provided images are just outlines stick to the [style] mentioned above)
+
+[Public Ledger]
+(an image is give)
+(provided images are just outlines stick to the [style] mentioned above)
+
+
+

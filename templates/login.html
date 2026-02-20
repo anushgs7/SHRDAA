@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-4">
+        <div class="card p-4 mt-5">
+            <h3 class="text-center mb-4">Account Login</h3>
+            <form action="/login" method="POST">
+                <div class="mb-3">
+                    <label class="form-label">Account Number</label>
+                    <input type="text" name="account_no" class="form-control" placeholder="A00001" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <input type="password" name="password" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Sign In</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
