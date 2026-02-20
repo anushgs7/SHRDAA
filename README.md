@@ -1,65 +1,98 @@
-SHRDAA
+# SHRDAA
 
-Secure High-Integrity Registry for Data Audit & Authentication
+## Secure High‑Integrity Registry for Data Audit & Authentication
 
-SHRDAA is a blockchain-inspired system designed to bring transparency, traceability, and accountability to government fund management. The goal is simple: make public fund allocation tamper-proof, auditable, and verifiable in real time.
+SHRDAA is a blockchain-inspired fund tracking and auditing system designed to ensure transparency, accountability, and data integrity in government financial workflows.
 
-📌 Vision
+The system provides a tamper-resistant registry where every fund allocation and transaction is securely recorded, verified, and auditable.
 
-Public financial systems often suffer from opacity, delayed audits, and potential manipulation. SHRDAA introduces a secure digital registry that ensures:
+---
 
-Immutable transaction records
+## 🚀 Project Objective
 
-Transparent fund flow tracking
+To build a secure, high-integrity digital registry that:
 
-Cryptographically verifiable audits
+* Tracks public fund allocation and transfers
+* Prevents unauthorized data modification
+* Enables transparent auditing
+* Maintains cryptographic data integrity
+* Reduces dependency on manual verification systems
 
-Reduced risk of corruption
+---
 
-High-integrity data authentication
+## 🧠 System Overview
 
-This project aims to serve as a foundation for future GovTech solutions focused on financial transparency.
+SHRDAA works by recording transactions in a structured, hash-linked format similar to a blockchain ledger.
 
-⚙️ Core Features
+1. Authorized entities issue or allocate funds.
+2. Each transaction is recorded in the registry.
+3. Transactions are hashed to preserve integrity.
+4. Records are linked to prevent tampering.
+5. Auditors can verify the full transaction history.
 
-Secure Ledger System – Every transaction is recorded in a tamper-resistant structure.
+Any attempt to alter historical data invalidates the integrity of the chain.
 
-Audit Trail Generation – Complete historical tracking of fund movement.
+---
 
-Authentication Layer – Role-based access control for issuing, approving, and auditing entities.
+## ⚙️ Core Features
 
-Data Integrity Verification – Hash-based validation to prevent unauthorized changes.
+* Secure transaction registry
+* Hash-based data validation
+* Role-based authentication
+* Immutable audit trail
+* Modular and scalable architecture
 
-Modular Architecture – Designed for scalability and future integration.
+---
 
-🧠 How It Works
+## 🏗 Project Structure
 
-Funds are issued by authorized authorities.
-
-Each allocation or transfer is recorded in the system.
-
-Transactions are cryptographically hashed and linked.
-
-Auditors can verify fund movement through immutable records.
-
-Any attempt to alter past records invalidates the chain integrity.
-
-🛠️ Project Structure
+```
 SHRDAA/
 │
 ├── backend/        # Core logic and APIs
 ├── frontend/       # User interface
 ├── contracts/      # Smart contracts (if applicable)
-├── utils/          # Utility functions and helpers
-├── tests/          # Testing modules
+├── utils/          # Helper utilities
+├── tests/          # Test cases
 └── README.md
-🚀 Getting Started
+```
+
+---
+
+## 🛠 Getting Started
 
 Clone the repository:
 
+```
 git clone https://github.com/anushgs7/SHRDAA.git
 cd SHRDAA
-python app.py
+```
 
+Install dependencies:
 
-then go to http://127.0.0.1:5000/
+```
+npm install
+```
+
+Run the development environment:
+
+```
+npm run dev
+```
+
+*(Update commands according to your actual tech stack if different.)*
+
+---
+
+## 🔒 Potential Use Cases
+
+* Government fund tracking
+* Welfare scheme auditing
+* Institutional grant transparency
+* NGO fund monitoring systems
+
+---
+
+## 📜 License
+
+This project is open-source and available under the MIT License.
